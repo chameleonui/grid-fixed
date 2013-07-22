@@ -1,0 +1,66 @@
+// =============================================================================
+// Fixed Grid
+// =============================================================================
+// Inspired by Zurb's Foundation
+
+
+// Use flags
+// =============================================================================
+use-grid-tiles ?= true;
+use-grid-debug ?= false;
+
+// Variables
+// =============================================================================
+grid-columns-count ?= 12;
+grid-row-width ?= 980px;
+grid-row-max-width ?= grid-row-width;
+grid-gutter-width ?= 1.875em;
+
+
+grid-row-class ?= "row";
+grid-row-tabular-class ?= "row-tabular";
+grid-column-class ?= "column";
+grid-span-class ?= "span";
+grid-offset-class ?= "offset";
+grid-pull-class ?= "pull";
+grid-push-class ?= "push";
+grid-centered-class ?= "centered";
+grid-uncentered-class ?= "uncentered";
+
+grid-tiles-class ?= "tiles";
+grid-tiles-columns-from = 2;
+grid-tiles-columns-to = 12;
+
+grid-debug-bg-color ?= rgba(#777, .15);
+grid-debug-class ?= "grid-debug";
+
+
+// Mixins
+// =============================================================================
+grid-fixed() {
+    grid-row(grid-row-class, grid-row-width, grid-row-max-width, grid-gutter-width);
+    grid-row-tabular(grid-row-tabular-class, grid-column-class);
+    grid-column(grid-column-class, grid-gutter-width);
+    grid-column-span(grid-span-class, grid-columns-count);
+    grid-column-offset(grid-offset-class, grid-columns-count);
+    grid-column-pull(grid-pull-class, grid-columns-count);
+    grid-column-push(grid-push-class, grid-columns-count);
+    grid-column-centered(grid-column-class, grid-centered-class);
+
+    if (use-grid-tiles) {
+        [class*={'"' + grid-tiles-class + '"'}] { 
+            block-grid(false, grid-gutter-width);
+        }
+
+        for i in grid-tiles-columns-from..grid-tiles-columns-to {
+            .{grid-tiles-class}-{(i)} {
+                block-grid(i, grid-gutter-width, false);
+            }
+        }
+    }
+    
+    if (use-grid-debug) {
+        grid-debug(grid-debug-bg-color, grid-debug-class, grid-row-class, grid-column-class, grid-tiles-class);
+    }
+}
+

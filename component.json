@@ -1,0 +1,16 @@
+{
+  "name": "grid",
+  "repo": "chameleonui/grid",
+  "description": "Fixed grid inspired by Zurb Foundation",
+  "version": "1.0.0",
+  "keywords": [],
+  "dependencies": {
+    "chameleonui/utils": "*",
+    "chameleonui/grid-core": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "styles": [
+    "grid-fixed.styl"
+  ]
+}
