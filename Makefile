@@ -5,6 +5,9 @@ build: components grid.css
 components: component.json
 	@component install --dev
 
+example: components grid-fixed.styl example.styl
+	@stylus example.styl
+
 clean:
 	rm -fr build components template.js
 
